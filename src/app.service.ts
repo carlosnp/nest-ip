@@ -1,23 +1,25 @@
 import { Injectable } from '@nestjs/common';
-// import { publicIp, publicIpv4, publicIpv6 } from 'public-ip';
+import { ip as addressIp } from 'address';
 
 @Injectable()
 export class AppService {
+  /**
+   * Hola mundo
+   * @returns
+   */
   async getHello() {
-    // const ipData = await this.getPublicIp();
+    const ip = this.getAddressIp();
     return {
       message: 'Hello World!',
-      // ...ipData,
+      address: ip,
     };
   }
   /**
    * Obtiene los datos de la ip publica
    * @returns
    */
-  // async getPublicIp() {
-  //   const ip = await publicIp();
-  //   const ipv4 = await publicIpv4();
-  //   const ipv6 = await publicIpv6();
-  //   return { ip, ipv4, ipv6 };
-  // }
+  getAddressIp() {
+    const ip = addressIp();
+    return ip;
+  }
 }

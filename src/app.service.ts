@@ -1,7 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ip as addressIp } from 'address';
-import { networkInterfaces } from 'os';
+import { NetworkInterfaceInfo, networkInterfaces } from 'os';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable()
@@ -40,9 +40,9 @@ export class AppService {
    * @returns
    */
   getIpOs() {
-    const interfaces = networkInterfaces();
+    const interfaces: NodeJS.Dict<NetworkInterfaceInfo[]> = networkInterfaces();
     const local = interfaces['lo'];
-    const eth0 = interfaces['eth0'];
+    const eth0: NetworkInterfaceInfo[] = interfaces['eth0'];
     return { local, eth0 };
   }
   /**

@@ -9,6 +9,6 @@ export class AppController {
   @Get()
   async getHello(@RealIP() ip: string) {
     const data = await this.appService.getHello();
-    return { ...data, myIp: ip };
+    return { myIp: ip, ...data };
   }
 }

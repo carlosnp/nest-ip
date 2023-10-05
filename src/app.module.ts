@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: ['.env', '.env.default'],
       isGlobal: true,
     }),
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
